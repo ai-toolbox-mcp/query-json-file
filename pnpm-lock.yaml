@@ -23,6 +23,9 @@ importers:
       "@eslint/js":
         specifier: ^9.31.0
         version: 9.31.0
+      "@faker-js/faker":
+        specifier: ^9.9.0
+        version: 9.9.0
       "@modelcontextprotocol/inspector":
         specifier: ^0.16.1
         version: 0.16.1(@types/node@22.16.5)(typescript@5.8.3)
@@ -50,6 +53,9 @@ importers:
       jiti:
         specifier: ^2.4.2
         version: 2.4.2
+      json-schema-faker:
+        specifier: ^0.5.9
+        version: 0.5.9
       lint-staged:
         specifier: ^16.1.2
         version: 16.1.2
@@ -644,6 +650,13 @@ packages:
         integrity: sha512-Ul5l+lHEcw3L5+k8POx6r74mxEYKG5kOb6Xpy2gCRW6zweT6TEhAf8vhxGgjhqrd/VO/Dirhsb+1hNpD1ue9hw==,
       }
     engines: { node: ^18.18.0 || ^20.9.0 || >=21.1.0 }
+
+  "@faker-js/faker@9.9.0":
+    resolution:
+      {
+        integrity: sha512-OEl393iCOoo/z8bMezRlJu+GlRGlsKbUAN7jKB6LhnKoqKve5DXRpalbItIIcwnCjs1k/FOPjFzcA6Qn+H+YbA==,
+      }
+    engines: { node: ">=18.0.0", npm: ">=9.0.0" }
 
   "@floating-ui/core@1.7.2":
     resolution:
@@ -1976,6 +1989,12 @@ packages:
         integrity: sha512-58S9QDqG0Xx27YwPSt9fJxivjYl432YCwfDMfZ+71RAqUrZef7LrKQZ3LHLOwCS4FLNBplP533Zx895SeOCHvA==,
       }
 
+  argparse@1.0.10:
+    resolution:
+      {
+        integrity: sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==,
+      }
+
   argparse@2.0.1:
     resolution:
       {
@@ -2093,6 +2112,12 @@ packages:
         integrity: sha512-+ys997U96po4Kx/ABpBCqhA9EuxJaQWDQg7295H4hBphv3IZg0boBKuwYpt4YXp6MZ5AmZQnU/tyMTlRpaSejg==,
       }
     engines: { node: ">= 0.4" }
+
+  call-me-maybe@1.0.2:
+    resolution:
+      {
+        integrity: sha512-HpX65o1Hnr9HH25ojC1YGs7HCQLq0GCOibSaWER0eNpgJ/Z1MZv2mTc7+xh6WOPxbRVcmgbv4hGU+uSQ/2xFZQ==,
+      }
 
   callsites@3.1.0:
     resolution:
@@ -2721,6 +2746,14 @@ packages:
       }
     engines: { node: ^18.18.0 || ^20.9.0 || >=21.1.0 }
 
+  esprima@4.0.1:
+    resolution:
+      {
+        integrity: sha512-eGuFFw7Upda+g4p+QHvnW0RyTX/SVeJBDM/gCtMARO0cLuT2HcEKnTPvhjV6aGeqrCB/sbNop0Kszm0jsaWU4A==,
+      }
+    engines: { node: ">=4" }
+    hasBin: true
+
   esquery@1.6.0:
     resolution:
       {
@@ -2972,6 +3005,12 @@ packages:
         integrity: sha512-gIXjKqtFuWEgzFRJA9WCQeSJLZDjgJUOMCMzxtvFq/37KojM1BFGufqsCy0r4qSQmYLsZYMeyRqzIWOMup03sw==,
       }
     engines: { node: ">=14" }
+
+  format-util@1.0.5:
+    resolution:
+      {
+        integrity: sha512-varLbTj0e0yVyRpqQhuWV+8hlePAgaoFRhNFj50BNjEIrw1/DphHSObtqwskVCPWNgzwPoQrZAbfa/SBiicNeg==,
+      }
 
   forwarded@0.2.0:
     resolution:
@@ -3588,6 +3627,13 @@ packages:
         integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==,
       }
 
+  js-yaml@3.14.1:
+    resolution:
+      {
+        integrity: sha512-okMH7OXXJ7YrN9Ok3/SXrnu4iX9yOk+25nqX4imS2npuvTYDmo/QEZoqwZkYaIDk3jVvBOTOIEgEhaLOynBS9g==,
+      }
+    hasBin: true
+
   js-yaml@4.1.0:
     resolution:
       {
@@ -3619,6 +3665,20 @@ packages:
       {
         integrity: sha512-xyFwyhro/JEof6Ghe2iz2NcXoj2sloNsWr/XsERDK/oiPCfaNhl5ONfp+jQdAZRQQ0IJWNzH9zIZF7li91kh2w==,
       }
+
+  json-schema-faker@0.5.9:
+    resolution:
+      {
+        integrity: sha512-fNKLHgDvfGNNTX1zqIjqFMJjCLzJ2kvnJ831x4aqkAoeE4jE2TxvpJdhOnk3JU3s42vFzmXvkpbYzH5H3ncAzg==,
+      }
+    hasBin: true
+
+  json-schema-ref-parser@6.1.0:
+    resolution:
+      {
+        integrity: sha512-pXe9H1m6IgIpXmE5JSb8epilNTGsmTb2iPohAXpOdhqGFbQjNeHHsZxU+C8w6T81GZxSPFLeUoqDJmzxx5IGuw==,
+      }
+    deprecated: Please switch to @apidevtools/json-schema-ref-parser
 
   json-schema-traverse@0.4.1:
     resolution:
@@ -4187,6 +4247,12 @@ packages:
         integrity: sha512-VXJjc87FScF88uafS3JllDgvAm+c/Slfz06lorj2uAY34rlUu0Nt+v8wreiImcrgAjjIHp1rXpTDlLOGw29WwQ==,
       }
     engines: { node: ">=18" }
+
+  ono@4.0.11:
+    resolution:
+      {
+        integrity: sha512-jQ31cORBFE6td25deYeD80wxKBMj+zBmHTrVxnc6CKhx8gho6ipmWM5zj/oeoqioZ99yqBls9Z/9Nss7J26G2g==,
+      }
 
   open@10.2.0:
     resolution:
@@ -5057,6 +5123,12 @@ packages:
     resolution:
       {
         integrity: sha512-NKywug4u4pX/AZBB1FCPzZ6/7O+Xhz1qMVbzTvvKvikjO99oPN87SkK08mEY9P63/5lWjK+wgOOgApnTg5r6qg==,
+      }
+
+  sprintf-js@1.0.3:
+    resolution:
+      {
+        integrity: sha512-D9cPgkvLlV3t3IzL0D0YLvGA9Ahk4PcvVwUbN0dSGr1aP0Nrt4AEnTUbuGvquEC0mA64Gqt1fzirlRs5ibXx8g==,
       }
 
   stackback@0.0.2:
@@ -6089,6 +6161,8 @@ snapshots:
       "@eslint/core": 0.15.1
       levn: 0.4.1
 
+  "@faker-js/faker@9.9.0": {}
+
   "@floating-ui/core@1.7.2":
     dependencies:
       "@floating-ui/utils": 0.2.10
@@ -7003,6 +7077,10 @@ snapshots:
 
   arg@4.1.3: {}
 
+  argparse@1.0.10:
+    dependencies:
+      sprintf-js: 1.0.3
+
   argparse@2.0.1: {}
 
   argv-formatter@1.0.0: {}
@@ -7067,6 +7145,8 @@ snapshots:
     dependencies:
       call-bind-apply-helpers: 1.0.2
       get-intrinsic: 1.3.0
+
+  call-me-maybe@1.0.2: {}
 
   callsites@3.1.0: {}
 
@@ -7480,6 +7560,8 @@ snapshots:
       acorn-jsx: 5.3.2(acorn@8.15.0)
       eslint-visitor-keys: 4.2.1
 
+  esprima@4.0.1: {}
+
   esquery@1.6.0:
     dependencies:
       estraverse: 5.3.0
@@ -7691,6 +7773,8 @@ snapshots:
     dependencies:
       cross-spawn: 7.0.6
       signal-exit: 4.1.0
+
+  format-util@1.0.5: {}
 
   forwarded@0.2.0: {}
 
@@ -8001,6 +8085,11 @@ snapshots:
 
   js-tokens@4.0.0: {}
 
+  js-yaml@3.14.1:
+    dependencies:
+      argparse: 1.0.10
+      esprima: 4.0.1
+
   js-yaml@4.1.0:
     dependencies:
       argparse: 2.0.1
@@ -8012,6 +8101,17 @@ snapshots:
   json-parse-better-errors@1.0.2: {}
 
   json-parse-even-better-errors@2.3.1: {}
+
+  json-schema-faker@0.5.9:
+    dependencies:
+      json-schema-ref-parser: 6.1.0
+      jsonpath-plus: 10.3.0
+
+  json-schema-ref-parser@6.1.0:
+    dependencies:
+      call-me-maybe: 1.0.2
+      js-yaml: 3.14.1
+      ono: 4.0.11
 
   json-schema-traverse@0.4.1: {}
 
@@ -8275,6 +8375,10 @@ snapshots:
   onetime@7.0.0:
     dependencies:
       mimic-function: 5.0.1
+
+  ono@4.0.11:
+    dependencies:
+      format-util: 1.0.5
 
   open@10.2.0:
     dependencies:
@@ -8805,6 +8909,8 @@ snapshots:
   split2@1.0.0:
     dependencies:
       through2: 2.0.5
+
+  sprintf-js@1.0.3: {}
 
   stackback@0.0.2: {}
 

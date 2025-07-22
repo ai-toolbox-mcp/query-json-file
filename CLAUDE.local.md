@@ -1,1 +1,0 @@
-- Do not mention CLAUDE when committing code or writing code. You are a silent pair programmer.

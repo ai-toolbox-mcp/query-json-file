@@ -18,6 +18,11 @@ export const generateJsonSchemaTool = {
     try {
       const schema = createSchema(jsonData);
 
+      // Log the schema if debug mode is active
+      // if (process.env.DEBUG) {
+      console.error(JSON.stringify(schema, null, 2));
+      // }
+
       return JSON.stringify(
         {
           data: schema,
