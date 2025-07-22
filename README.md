@@ -7,11 +7,11 @@ The server is built using FastMCP and provides efficient JSON file operations wi
 ### Available Tools
 
 - `query-json-file` - Performs JSONPath queries on JSON files
-    - `filePath` (string, required): The absolute path to the JSON file
-    - `query` (string, required): JSONPath query string (e.g., `$.key` or `$[*].name`)
+  - `filePath` (string, required): The absolute path to the JSON file
+  - `query` (string, required): JSONPath query string (e.g., `$.key` or `$[*].name`)
 
 - `generate-json-schema` - Generates JSON schemas from JSON files using the genson-js library
-    - `filePath` (string, required): The absolute path to the JSON file
+  - `filePath` (string, required): The absolute path to the JSON file
 
 ## Installation
 
@@ -57,10 +57,7 @@ Add to your Claude settings:
   "mcpServers": {
     "query-json-file": {
       "command": "npx",
-      "args": [
-        "-y",
-        "@ai-toolbox-mcp/query-json-file"
-      ]
+      "args": ["-y", "@ai-toolbox-mcp/query-json-file"]
     }
   }
 }
@@ -76,10 +73,7 @@ Add the following to your VS Code settings or `.vscode/mcp.json`:
     "servers": {
       "query-json-file": {
         "command": "npx",
-        "args": [
-          "-y",
-          "@ai-toolbox-mcp/query-json-file"
-        ]
+        "args": ["-y", "@ai-toolbox-mcp/query-json-file"]
       }
     }
   }
@@ -99,8 +93,10 @@ For HTTP transport:
         "args": [
           "-y",
           "@ai-toolbox-mcp/query-json-file",
-          "--transport", "http",
-          "--port", "3000"
+          "--transport",
+          "http",
+          "--port",
+          "3000"
         ]
       }
     }
@@ -121,6 +117,7 @@ For HTTP transport:
 ### Schema Generation
 
 The `generate-json-schema` tool analyzes the structure of JSON files and generates corresponding JSON schemas, useful for:
+
 - Understanding large JSON file structures
 - Validating other JSON files against the schema
 - API documentation generation
@@ -128,6 +125,7 @@ The `generate-json-schema` tool analyzes the structure of JSON files and generat
 ## Error Handling
 
 The server includes comprehensive error handling for:
+
 - File not found errors
 - Permission denied errors
 - Invalid JSON format errors
