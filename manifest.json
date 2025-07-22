@@ -1,0 +1,65 @@
+{
+  "dxt_version": "1.0",
+  "name": "query-json-file",
+  "display_name": "JSON Query MCP Server",
+  "version": "1.0.0",
+  "license": "MIT",
+  "description": "Query JSON files",
+  "long_description": "High-performance JSONPath query utilities for large JSON files",
+  "author": {
+    "name": "Eric Berry",
+    "email": "eric@berrydev.ai"
+  },
+  "server": {
+    "type": "node",
+    "entry_point": "dist/server.js",
+    "mcp_config": {
+      "command": "node",
+      "args": [
+        "${__dirname}/dist/server.js",
+        "--verbose=${user_config.verbose_logging}"
+      ],
+      "env": {
+        "DEBUG": "${user_config.debug_mode}"
+      }
+    }
+  },
+  "icon": "icon.png",
+  "tools": [
+    {
+      "name": "query_json_file",
+      "description": "Perform JSONPath queries on a JSON file"
+    },
+    {
+      "name": "generate_json_schema",
+      "description": "Generate JSON Schema from a JSON file"
+    }
+  ],
+  "user_config": {
+    "verbose_logging": {
+      "type": "boolean",
+      "title": "Verbose Logging",
+      "description": "Enable detailed logging output",
+      "default": false,
+      "required": false
+    },
+    "debug_mode": {
+      "type": "string",
+      "title": "Debug Mode",
+      "description": "Set debug level for troubleshooting",
+      "default": "info",
+      "required": false
+    }
+  },
+  "compatibility": {
+    "claude_desktop": ">=0.10.0",
+    "platforms": ["darwin", "win32", "linux"],
+    "runtimes": {
+      "node": ">=20.0.0"
+    }
+  },
+  "mcp_features": {
+    "filesystem_access": true,
+    "uses_roots": true
+  }
+}
