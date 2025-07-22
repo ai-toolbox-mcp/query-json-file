@@ -12,6 +12,7 @@
     "mcp-cli": "fastmcp dev src/index.ts",
     "lint": "prettier --check . && eslint . && tsc --noEmit",
     "format": "prettier --write . && eslint --fix .",
+    "prepare": "husky",
     "inspect2": "npx @modelcontextprotocol/inspector",
     "inspect": "npx fastmcp inspect src/index.ts",
     "dxt:pack": "npm run build && npm run dxt:validate && dxt pack . $npm_package_name-$npm_package_version.dxt",
@@ -45,6 +46,11 @@
   "bin": {
     "json-query-file": "./dist/index.js"
   },
+  "lint-staged": {
+    "*.{js,ts,json,md}": [
+      "pnpm format"
+    ]
+  },
   "release": {
     "branches": [
       "main"
@@ -64,7 +70,9 @@
     "@vitest/coverage-v8": "^2.1.9",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-perfectionist": "^4.15.0",
+    "husky": "^9.1.7",
     "jiti": "^2.4.2",
+    "lint-staged": "^16.1.2",
     "prettier": "^3.6.2",
     "semantic-release": "^24.2.7",
     "shx": "^0.4.0",
