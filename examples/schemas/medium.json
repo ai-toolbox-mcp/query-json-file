@@ -1,0 +1,217 @@
+{
+  "type": "object",
+  "properties": {
+    "users": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 25,
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "faker": "string.uuid"
+          },
+          "profile": {
+            "type": "object",
+            "properties": {
+              "username": {
+                "type": "string",
+                "faker": "internet.username"
+              },
+              "displayName": {
+                "type": "string",
+                "faker": "person.fullName"
+              },
+              "avatar": {
+                "type": "string",
+                "faker": "internet.avatar"
+              },
+              "bio": {
+                "type": "string",
+                "faker": "lorem.sentence"
+              }
+            },
+            "required": ["username", "displayName", "avatar", "bio"]
+          },
+          "contact": {
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string",
+                "faker": "internet.email"
+              },
+              "phone": {
+                "type": "string",
+                "faker": "phone.number"
+              },
+              "address": {
+                "type": "object",
+                "properties": {
+                  "street": {
+                    "type": "string",
+                    "faker": "location.streetAddress"
+                  },
+                  "city": {
+                    "type": "string",
+                    "faker": "location.city"
+                  },
+                  "country": {
+                    "type": "string",
+                    "faker": "location.country"
+                  },
+                  "zipCode": {
+                    "type": "string",
+                    "faker": "location.zipCode"
+                  }
+                },
+                "required": ["street", "city", "country", "zipCode"]
+              }
+            },
+            "required": ["email", "address"]
+          },
+          "preferences": {
+            "type": "object",
+            "properties": {
+              "theme": {
+                "type": "string",
+                "enum": ["light", "dark", "auto"]
+              },
+              "notifications": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "boolean"
+                  },
+                  "push": {
+                    "type": "boolean"
+                  },
+                  "sms": {
+                    "type": "boolean"
+                  }
+                },
+                "required": ["email", "push", "sms"]
+              },
+              "language": {
+                "type": "string",
+                "enum": ["en", "es", "fr", "de", "it", "pt", "ru", "ja", "zh"]
+              }
+            },
+            "required": ["theme", "notifications", "language"]
+          },
+          "orders": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 8,
+            "items": {
+              "type": "object",
+              "properties": {
+                "orderId": {
+                  "type": "string",
+                  "faker": "string.alphanumeric",
+                  "minLength": 8,
+                  "maxLength": 12
+                },
+                "date": {
+                  "type": "string",
+                  "faker": "date.recent"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "pending",
+                    "processing",
+                    "shipped",
+                    "delivered",
+                    "cancelled"
+                  ]
+                },
+                "total": {
+                  "type": "number",
+                  "minimum": 10.0,
+                  "maximum": 500.0
+                },
+                "items": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 5,
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "productId": {
+                        "type": "string",
+                        "faker": "string.alphanumeric"
+                      },
+                      "name": {
+                        "type": "string",
+                        "faker": "commerce.productName"
+                      },
+                      "category": {
+                        "type": "string",
+                        "faker": "commerce.department"
+                      },
+                      "price": {
+                        "type": "number",
+                        "minimum": 5.0,
+                        "maximum": 200.0
+                      },
+                      "quantity": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 10
+                      }
+                    },
+                    "required": [
+                      "productId",
+                      "name",
+                      "category",
+                      "price",
+                      "quantity"
+                    ]
+                  }
+                }
+              },
+              "required": ["orderId", "date", "status", "total", "items"]
+            }
+          },
+          "createdAt": {
+            "type": "string",
+            "faker": "date.past"
+          },
+          "isActive": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "profile",
+          "contact",
+          "preferences",
+          "orders",
+          "createdAt",
+          "isActive"
+        ]
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "totalUsers": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10000
+        },
+        "generatedAt": {
+          "type": "string",
+          "faker": "date.recent"
+        },
+        "version": {
+          "type": "string",
+          "faker": "system.semver"
+        }
+      },
+      "required": ["totalUsers", "generatedAt", "version"]
+    }
+  },
+  "required": ["users", "metadata"]
+}

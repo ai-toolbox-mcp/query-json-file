@@ -3,3 +3,5 @@ node_modules
 **/*.dxt
 CLAUDE.md
 .claude/settings.local.json
+.local
+examples/json_files/*

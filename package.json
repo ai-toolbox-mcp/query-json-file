@@ -9,8 +9,10 @@
     "dev": "tsx src/index.ts",
     "dev:http": "tsx src/index.ts --transport http --port 3925",
     "start": "node dist/index.js",
+    "mcp-cli": "fastmcp dev src/index.ts",
     "lint": "prettier --check . && eslint . && tsc --noEmit",
     "format": "prettier --write . && eslint --fix .",
+    "prepare": "husky",
     "inspect2": "npx @modelcontextprotocol/inspector",
     "inspect": "npx fastmcp inspect src/index.ts",
     "dxt:pack": "npm run build && npm run dxt:validate && dxt pack . $npm_package_name-$npm_package_version.dxt",
@@ -19,6 +21,7 @@
     "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test:watch": "vitest --watch",
+    "generate-test-data": "node ./scripts/generate-test-data.js",
     "prepublishOnly": "npm run build"
   },
   "repository": {
@@ -26,6 +29,7 @@
   },
   "homepage": "https://ai-toolbox.dev/mcp",
   "keywords": [
+    "mcp",
     "json",
     "jsonpath",
     "query json",
@@ -43,6 +47,11 @@
   "bin": {
     "json-query-file": "./dist/index.js"
   },
+  "lint-staged": {
+    "*.{js,ts,json,md}": [
+      "pnpm format"
+    ]
+  },
   "release": {
     "branches": [
       "main"
@@ -56,13 +65,18 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.31.0",
+    "@faker-js/faker": "^9.9.0",
     "@modelcontextprotocol/inspector": "^0.16.1",
     "@tsconfig/node22": "^22.0.2",
     "@types/node": "^22.16.5",
     "@vitest/coverage-v8": "^2.1.9",
+    "eslint": "^9.31.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-perfectionist": "^4.15.0",
+    "husky": "^9.1.7",
     "jiti": "^2.4.2",
+    "json-schema-faker": "^0.5.9",
+    "lint-staged": "^16.1.2",
     "prettier": "^3.6.2",
     "semantic-release": "^24.2.7",
     "shx": "^0.4.0",

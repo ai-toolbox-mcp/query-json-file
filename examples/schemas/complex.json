@@ -1,0 +1,120 @@
+{
+  "type": "array",
+  "minItems": 20,
+  "maxItems": 100,
+  "items": {
+    "anyOf": [
+      {
+        "type": "null"
+      },
+      {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "faker": "commerce.department"
+          },
+          "id": {
+            "type": "string",
+            "faker": "string.uuid"
+          },
+          "title": {
+            "type": "string",
+            "faker": "lorem.sentence"
+          },
+          "posts": {
+            "type": "array",
+            "minItems": 5,
+            "maxItems": 20,
+            "items": {
+              "type": "object",
+              "properties": {
+                "post_title": {
+                  "type": "string",
+                  "faker": "lorem.words"
+                },
+                "comments": {
+                  "type": "array",
+                  "minItems": 3,
+                  "maxItems": 15,
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "comment_text": {
+                        "type": "string",
+                        "faker": "lorem.paragraph"
+                      },
+                      "replies": {
+                        "type": "array",
+                        "minItems": 2,
+                        "maxItems": 10,
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "author": {
+                              "type": "string",
+                              "faker": "internet.username"
+                            },
+                            "content": {
+                              "type": "string",
+                              "faker": "lorem.sentences"
+                            },
+                            "platform": {
+                              "type": "string",
+                              "enum": [
+                                "reddit",
+                                "twitter",
+                                "linkedin",
+                                "github",
+                                "facebook",
+                                "instagram",
+                                "pinterest",
+                                "youtube",
+                                "tiktok",
+                                "discord"
+                              ]
+                            },
+                            "likes": {
+                              "type": "array",
+                              "minItems": 5,
+                              "maxItems": 20,
+                              "items": {
+                                "type": "integer",
+                                "minimum": 1,
+                                "maximum": 1000
+                              }
+                            },
+                            "shares": {
+                              "type": "array",
+                              "minItems": 3,
+                              "maxItems": 15,
+                              "items": {
+                                "type": "integer",
+                                "minimum": 0,
+                                "maximum": 500
+                              }
+                            }
+                          },
+                          "required": [
+                            "author",
+                            "content",
+                            "platform",
+                            "likes",
+                            "shares"
+                          ]
+                        }
+                      }
+                    },
+                    "required": ["comment_text", "replies"]
+                  }
+                }
+              },
+              "required": ["post_title", "comments"]
+            }
+          }
+        },
+        "required": ["category", "id", "title", "posts"]
+      }
+    ]
+  }
+}
