@@ -5,12 +5,13 @@ This directory contains JSON schemas and tools for generating test data for the 
 ## Structure
 
 ```
-examples/
-├── README.md           # This file
-├── schemas/           # JSON Schema definitions
-│   └── complex.json   # Complex nested schema example
-└── json_files/        # Generated JSON test data (not in git)
-    └── *.json         # Auto-generated test files
+test-data/
+├── README.md               # This file
+├── generate-test-data.js   # Script to generate test data using JSON Schema Faker
+├── schemas/                # JSON Schema definitions
+│   └── complex.json        # Complex nested schema example
+└── json_files/             # Generated JSON test data (not in git)
+    └── *.json             # Auto-generated test files
 ```
 
 ## JSON Schemas
@@ -27,7 +28,7 @@ The `schemas/` directory contains JSON Schema files that define the structure of
 
 ## Generating Test Data
 
-Test data is generated using the `scripts/generate-test-data.js` script, which uses `json-schema-faker` to create realistic sample data based on the JSON schemas.
+Test data is generated using the `generate-test-data.js` script, which uses `json-schema-faker` to create realistic sample data based on the JSON schemas.
 
 ### Prerequisites
 
@@ -41,7 +42,7 @@ pnpm install
 
 ```bash
 # Generate test data from all schemas
-node scripts/generate-test-data.js
+pnpm run generate-test-data
 ```
 
 The script will:
@@ -66,7 +67,7 @@ To add a new JSON schema for test data generation:
 1. **Create the schema file** in the `schemas/` directory:
 
    ```bash
-   touch examples/schemas/my-new-schema.json
+   touch test-data/schemas/my-new-schema.json
    ```
 
 2. **Define your JSON Schema** with the following considerations:

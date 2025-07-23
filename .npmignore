@@ -4,4 +4,4 @@ node_modules
 CLAUDE.md
 .claude/settings.local.json
 .local
-test-data/json_files/*
+examples/json_files/*
