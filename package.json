@@ -1,31 +1,48 @@
 {
-  "name": "@ai-toolbox-dev/json-query-file",
+  "name": "@ai-toolbox-mcp/query-json-file",
   "version": "0.1.0",
-  "description": "MCP server for querying JSON files with S3 sync support",
+  "description": "MCP server for querying JSON files",
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
-    "build": "tsc && shx chmod +x dist/index.js",
-    "dev": "tsx src/index.ts",
+    "build": "tsc && shx chmod +x dist/*.js",
+    "changelog:add": "./scripts/changelog.sh add",
+    "changelog:help": "./scripts/changelog.sh help",
+    "changelog:prepare": "./scripts/changelog.sh prepare",
+    "clean": "rm -rf dist",
+    "dev": "tsc && node dist/index.js",
     "dev:http": "tsx src/index.ts --transport http --port 3925",
-    "start": "node dist/index.js",
-    "mcp-cli": "fastmcp dev src/index.ts",
-    "lint": "prettier --check . && eslint . && tsc --noEmit",
-    "format": "prettier --write . && eslint --fix .",
-    "prepare": "husky",
-    "inspect2": "npx @modelcontextprotocol/inspector",
-    "inspect": "npx fastmcp inspect src/index.ts",
-    "dxt:pack": "npm run build && npm run dxt:validate && dxt pack . $npm_package_name-$npm_package_version.dxt",
+    "dxt:pack": "pnpm run build && pnpm run dxt:validate && pnpm run dxt:pack:clean",
+    "dxt:pack:clean": "mv node_modules node_modules.dev && pnpm install --prod && dxt pack . ./extensions/$npm_package_name-$npm_package_version.dxt && rm -rf node_modules && mv node_modules.dev node_modules",
     "dxt:validate": "dxt validate manifest.json",
+    "format": "prettier --write . && eslint --fix .",
+    "format:check": "prettier --check src/**/*.ts",
+    "generate-test-data": "node ./test-data/generate-test-data.js",
+    "inspect": "npx fastmcp inspect src/index.ts",
+    "inspect2": "npx @modelcontextprotocol/inspector",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "mcp-cli": "fastmcp dev src/index.ts",
+    "quality": "pnpm run lint && pnpm run format:check && pnpm run type-check",
+    "release": "./scripts/release.sh",
+    "release:major": "pnpm run version:major && pnpm run dxt:pack",
+    "release:minor": "pnpm run version:minor && pnpm run dxt:pack",
+    "release:patch": "pnpm run version:patch && pnpm run dxt:pack",
+    "start": "node dist/index.js",
+    "type-check": "tsc --noEmit",
     "test": "vitest run",
-    "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
+    "test:run": "vitest run",
     "test:watch": "vitest --watch",
-    "generate-test-data": "node ./scripts/generate-test-data.js",
-    "prepublishOnly": "npm run build"
+    "version:major": "npm version major",
+    "version:minor": "npm version minor",
+    "version:patch": "npm version patch",
+    "update-mcp-docs": "node scripts/update-mcp-docs.js",
+    "watch": "tsc --watch"
   },
   "repository": {
-    "url": "https://github.com/ai-toolbox-dev/json-query-file"
+    "type": "git",
+    "url": "https://github.com/ai-toolbox-dev/json-query-file.git"
   },
   "homepage": "https://ai-toolbox.dev/mcp",
   "keywords": [
@@ -42,25 +59,15 @@
     "fastmcp": "^1.27.7",
     "genson-js": "^0.0.8",
     "jsonpath-plus": "^10.3.0",
+    "load-json-file": "^7.0.1",
     "zod": "^3.25.76"
   },
   "bin": {
-    "json-query-file": "./dist/index.js"
+    "json-query-file": "dist/index.js"
   },
   "lint-staged": {
     "*.{js,ts,json,md}": [
       "pnpm format"
-    ]
-  },
-  "release": {
-    "branches": [
-      "main"
-    ],
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      "@semantic-release/npm",
-      "@semantic-release/github"
     ]
   },
   "devDependencies": {
@@ -78,7 +85,6 @@
     "json-schema-faker": "^0.5.9",
     "lint-staged": "^16.1.2",
     "prettier": "^3.6.2",
-    "semantic-release": "^24.2.7",
     "shx": "^0.4.0",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3",

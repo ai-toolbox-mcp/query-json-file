@@ -1,7 +1,7 @@
 dist
 node_modules
 **/*.dxt
+CLAUDE.md
 .claude/settings.local.json
 .local
-test-data/json_files/*
-.claude/context/imported/*.*
+examples/json_files/*

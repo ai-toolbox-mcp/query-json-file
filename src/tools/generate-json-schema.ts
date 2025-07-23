@@ -1,8 +1,8 @@
 import { createSchema } from "genson-js";
+import { loadJsonFile } from "load-json-file";
 import { z } from "zod";
 
 import { MCPError } from "../types/index.js";
-import { readJsonFile } from "../utils/index.js";
 
 const toolArgSchema = z.object({
   filePath: z.string().describe("The absolute path to the JSON file"),
@@ -12,7 +12,7 @@ export const generateJsonSchemaTool = {
   description: "Generate a JSON schema from a JSON file",
   execute: async (args: z.infer<typeof toolArgSchema>) => {
     // Read the JSON data
-    const jsonData = await readJsonFile({ filePath: args.filePath });
+    const jsonData = await loadJsonFile(args.filePath);
 
     // Generate the schema
     try {

@@ -50,16 +50,5 @@
       "default": "info",
       "required": false
     }
-  },
-  "compatibility": {
-    "claude_desktop": ">=0.10.0",
-    "platforms": ["darwin", "win32", "linux"],
-    "runtimes": {
-      "node": ">=20.0.0"
-    }
-  },
-  "mcp_features": {
-    "filesystem_access": true,
-    "uses_roots": true
   }
 }

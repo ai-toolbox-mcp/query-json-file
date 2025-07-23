@@ -1,7 +1,14 @@
+import { loadJsonFile } from "load-json-file";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import * as utils from "../utils/index.js";
 import { queryJsonFileTool } from "./query-json-file.js";
+
+// Mock the loadJsonFile module
+vi.mock("load-json-file", () => ({
+  loadJsonFile: vi.fn(),
+}));
+
+const mockLoadJsonFile = vi.mocked(loadJsonFile);
 
 const testData = {
   posts: [
@@ -17,8 +24,8 @@ const testData = {
 
 describe("queryJsonFileTool", () => {
   beforeEach(() => {
-    // Mock readJsonFile to return testData
-    vi.spyOn(utils, "readJsonFile").mockResolvedValue(testData);
+    // Mock loadJsonFile to return testData
+    mockLoadJsonFile.mockResolvedValue(testData);
   });
 
   afterEach(() => {
@@ -89,14 +96,12 @@ describe("queryJsonFileTool", () => {
     expect(parsed.status).toBe("success");
   });
 
-  it("should call readJsonFile with the correct filePath", async () => {
+  it("should call loadJsonFile with the correct filePath", async () => {
     await queryJsonFileTool.execute({
       filePath: "/path/to/test.json",
       query: "$.users",
     });
 
-    expect(utils.readJsonFile).toHaveBeenCalledWith({
-      filePath: "/path/to/test.json",
-    });
+    expect(mockLoadJsonFile).toHaveBeenCalledWith("/path/to/test.json");
   });
 });

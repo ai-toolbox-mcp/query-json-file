@@ -1,8 +1,8 @@
 import { JSONPath } from "jsonpath-plus";
+import { loadJsonFile } from "load-json-file";
 import { z } from "zod";
 
 import { MCPError } from "../types/index.js";
-import { readJsonFile } from "../utils/index.js";
 
 const toolArgSchema = z.object({
   filePath: z.string().describe("The absolute path to the JSON file"),
@@ -16,7 +16,7 @@ export const queryJsonFileTool = {
   execute: async (args: z.infer<typeof toolArgSchema>) => {
     // Read the JSON data
     const { filePath, query } = args;
-    const jsonData = await readJsonFile({ filePath: filePath });
+    const jsonData = await loadJsonFile(filePath);
 
     try {
       // Perform JSONPath query - cast to satisfy JSONPath typing requirements

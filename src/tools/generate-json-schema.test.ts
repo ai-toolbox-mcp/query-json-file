@@ -1,7 +1,14 @@
+import { loadJsonFile } from "load-json-file";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import * as utils from "../utils/index.js";
 import { generateJsonSchemaTool } from "./generate-json-schema.js";
+
+// Mock the loadJsonFile module
+vi.mock("load-json-file", () => ({
+  loadJsonFile: vi.fn(),
+}));
+
+const mockLoadJsonFile = vi.mocked(loadJsonFile);
 
 const testData = {
   posts: [
@@ -37,7 +44,7 @@ describe("generateJsonSchemaTool", () => {
   });
 
   it("should generate schema for complex nested object and return correct structure", async () => {
-    vi.spyOn(utils, "readJsonFile").mockResolvedValue(testData);
+    mockLoadJsonFile.mockResolvedValue(testData);
 
     const result = await generateJsonSchemaTool.execute({
       filePath: "test.json",
@@ -55,7 +62,7 @@ describe("generateJsonSchemaTool", () => {
   });
 
   it("should generate schema for simple object with primitive types", async () => {
-    vi.spyOn(utils, "readJsonFile").mockResolvedValue(simpleObject);
+    mockLoadJsonFile.mockResolvedValue(simpleObject);
 
     const result = await generateJsonSchemaTool.execute({
       filePath: "simple.json",
@@ -70,7 +77,7 @@ describe("generateJsonSchemaTool", () => {
   });
 
   it("should generate schema for array data", async () => {
-    vi.spyOn(utils, "readJsonFile").mockResolvedValue(arrayData);
+    mockLoadJsonFile.mockResolvedValue(arrayData);
 
     const result = await generateJsonSchemaTool.execute({
       filePath: "array.json",
@@ -86,7 +93,7 @@ describe("generateJsonSchemaTool", () => {
   });
 
   it("should handle nested array items correctly", async () => {
-    vi.spyOn(utils, "readJsonFile").mockResolvedValue(testData);
+    mockLoadJsonFile.mockResolvedValue(testData);
 
     const result = await generateJsonSchemaTool.execute({
       filePath: "nested.json",
@@ -106,25 +113,21 @@ describe("generateJsonSchemaTool", () => {
     expect(usersSchema.items.properties.email.type).toBe("string");
   });
 
-  it("should call readJsonFile with the correct filePath", async () => {
-    const mockReadJsonFile = vi
-      .spyOn(utils, "readJsonFile")
-      .mockResolvedValue(testData);
+  it("should call loadJsonFile with the correct filePath", async () => {
+    mockLoadJsonFile.mockResolvedValue(testData);
 
     await generateJsonSchemaTool.execute({
       filePath: "/path/to/custom.json",
     });
 
-    expect(mockReadJsonFile).toHaveBeenCalledWith({
-      filePath: "/path/to/custom.json",
-    });
+    expect(mockLoadJsonFile).toHaveBeenCalledWith("/path/to/custom.json");
   });
 
   it("should output schema to console.error during execution", async () => {
     const mockConsoleError = vi
       .spyOn(console, "error")
       .mockImplementation(() => {});
-    vi.spyOn(utils, "readJsonFile").mockResolvedValue(simpleObject);
+    mockLoadJsonFile.mockResolvedValue(simpleObject);
 
     await generateJsonSchemaTool.execute({
       filePath: "test.json",
@@ -136,7 +139,7 @@ describe("generateJsonSchemaTool", () => {
   });
 
   it("should handle empty object", async () => {
-    vi.spyOn(utils, "readJsonFile").mockResolvedValue({});
+    mockLoadJsonFile.mockResolvedValue({});
 
     const result = await generateJsonSchemaTool.execute({
       filePath: "empty.json",
@@ -148,7 +151,7 @@ describe("generateJsonSchemaTool", () => {
   });
 
   it("should handle empty array", async () => {
-    vi.spyOn(utils, "readJsonFile").mockResolvedValue([]);
+    mockLoadJsonFile.mockResolvedValue([]);
 
     const result = await generateJsonSchemaTool.execute({
       filePath: "empty-array.json",
@@ -160,7 +163,7 @@ describe("generateJsonSchemaTool", () => {
   });
 
   it("should handle primitive values", async () => {
-    vi.spyOn(utils, "readJsonFile").mockResolvedValue("simple string");
+    mockLoadJsonFile.mockResolvedValue("simple string");
 
     const result = await generateJsonSchemaTool.execute({
       filePath: "string.json",
@@ -172,7 +175,7 @@ describe("generateJsonSchemaTool", () => {
   });
 
   it("should handle null values", async () => {
-    vi.spyOn(utils, "readJsonFile").mockResolvedValue(null);
+    mockLoadJsonFile.mockResolvedValue(null);
 
     const result = await generateJsonSchemaTool.execute({
       filePath: "null.json",
