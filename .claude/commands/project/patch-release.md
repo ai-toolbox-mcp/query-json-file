@@ -46,12 +46,6 @@ pnpm run quality
 
 # Run tests
 pnpm test
-
-# Validate DXT manifest
-pnpm run dxt:validate
-
-# Test DXT packaging
-pnpm run dxt:pack
 ```
 
 Fix any errors before proceeding.

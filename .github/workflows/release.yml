@@ -44,9 +44,6 @@ jobs:
       - name: Build project
         run: pnpm run build
 
-      - name: Create DXT package
-        run: pnpm run dxt:pack
-
       - name: Create distribution tarball
         run: |
           npm pack
@@ -189,16 +186,6 @@ jobs:
           draft: false
           prerelease: ${{ github.event.inputs.prerelease || false }}
 
-      - name: Upload DXT Package
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        with:
-          upload_url: ${{ steps.create-release.outputs.upload_url }}
-          asset_path: ./extensions/${{ steps.package-info.outputs.name }}-${{ steps.package-info.outputs.version }}.dxt
-          asset_name: ${{ steps.package-info.outputs.name }}-${{ steps.package-info.outputs.version }}.dxt
-          asset_content_type: application/octet-stream
-
       - name: Upload NPM Package
         uses: actions/upload-release-asset@v1
         env:
@@ -235,7 +222,6 @@ jobs:
           echo "**Version:** ${{ steps.package-info.outputs.version }}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### 📦 Available Downloads:" >> $GITHUB_STEP_SUMMARY
-          echo "- DXT Package: \`${{ steps.package-info.outputs.name }}-${{ steps.package-info.outputs.version }}.dxt\`" >> $GITHUB_STEP_SUMMARY
           echo "- NPM Package: \`${{ steps.package-info.outputs.name }}-${{ steps.package-info.outputs.version }}.tgz\`" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "[View Release](${{ steps.create-release.outputs.html_url }})" >> $GITHUB_STEP_SUMMARY
