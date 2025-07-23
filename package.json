@@ -38,6 +38,7 @@
     "version:major": "npm version major",
     "version:minor": "npm version minor",
     "version:patch": "npm version patch",
+    "update-mcp-docs": "node scripts/update-mcp-docs.js",
     "watch": "tsc --watch"
   },
   "repository": {
@@ -85,7 +86,6 @@
     "json-schema-faker": "^0.5.9",
     "lint-staged": "^16.1.2",
     "prettier": "^3.6.2",
-    "semantic-release": "^24.2.7",
     "shx": "^0.4.0",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3",
